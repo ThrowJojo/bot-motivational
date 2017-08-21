@@ -13,7 +13,10 @@
   "dependencies": {
     "express": "^4.15.4",
     "fb-bot-framework": "^0.3.0",
-    "node-fetch": "^1.7.2"
+    "mysql": "^2.14.1",
+    "mysql2": "^1.4.1",
+    "node-fetch": "^1.7.2",
+    "sequelize": "^4.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
