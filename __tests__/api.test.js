@@ -21,8 +21,20 @@ test('Get data for a fake ID', async() => {
 });
 
 test('Sync Sequelize', async() => {
-    await DataHelper.sync();
-    console.log("SYNCED!");
+    let { error } = await DataHelper.sync();
+    expect(error).toBe(null);
+});
+
+test('Remove user from Database', async() => {
+    let { error } = await DataHelper.removeUser(Config.dummy_user);
+    console.log(error);
+});
+
+test('Add User To Database', async() => {
+    let userData = await APIHelper.getUserData(Config.dummy_user);
+    let {user, error} = await DataHelper.addUser(Config.dummy_user, userData.timezone);
+    expect(error).toBe(null);
+    expect(user.timezone).toBe(userData.timezone);
 });
 
 /* TODO: Create proper test

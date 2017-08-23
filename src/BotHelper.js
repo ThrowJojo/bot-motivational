@@ -2,6 +2,8 @@
 import FBBotFramework from 'fb-bot-framework';
 import Constants from './Constants';
 import Config from './config.json';
+import APIHelper from './APIHelper';
+import DataHelper from './DataHelper';
 
 let botInstance: FBBotFramework = new FBBotFramework({
     page_token: Config.page_token,
@@ -15,7 +17,7 @@ botInstance.on('postback', (userId: string, payload: string) => {
     if (payload == Constants.PAYLOAD_GET_STARTED) {
         BotHelper.handleGetStarted(userId);
     } else if (payload == Constants.PAYLOAD_SUBSCRIBE) {
-
+        BotHelper.saveNewUser(userId);
     }
 
 });
@@ -30,6 +32,7 @@ export default class BotHelper {
         return botInstance;
     }
 
+    // TODO: message is unused
     static handleMessage(userId: string, message: string) {
         botInstance.sendTextMessage(userId, "Right back at you");
     }
@@ -44,6 +47,10 @@ export default class BotHelper {
             }
         ];
         botInstance.sendButtonMessage(userId, message, buttons);
+    }
+
+    static async saveNewUser(userId: string) {
+
     }
 
 }
